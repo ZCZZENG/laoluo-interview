@@ -1,0 +1,4 @@
+interface:
+  display_name: "LaoLuo Interview"
+  short_description: "Run Luo-style longform interview prep and sessions"
+  default_prompt: "Use $laoluo-interview to prepare and run a structured longform guest interview."
