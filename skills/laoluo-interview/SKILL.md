@@ -9,6 +9,18 @@ description: Prepare, run, and package non-commercial longform interview session
 
 Use this skill to turn a guest idea into a structured longform interview package: pre-interview notes, research brief, chapter plan, session memory, transcript draft, and highlights. Keep the output legally conservative: imitate only abstract interviewing patterns, never clone a living person's voice, face, name endorsement, or exact protected expression.
 
+## Invocation Contract
+
+When the user invokes `$laoluo-interview`, do not behave like a generic chatbot with a style prompt. Take ownership of the workflow.
+
+- If the user says "start", "try it", "run it", or gives a guest/topic, immediately create or select a session workspace.
+- If the user wants to experience the skill interactively, run `scripts/pre_interview_cli.py` and let the script collect a structured pre-interview.
+- If the user provides raw notes instead of live answers, convert those notes into the same session artifacts instead of asking the whole questionnaire again.
+- After each meaningful user answer, update artifacts or state. Do not only reply with another question unless the current task is explicitly live pre-interview.
+- End every work cycle by pointing to the concrete files produced or updated.
+
+The difference from a prompt is persistence and repeatability: this skill owns files, schemas, reference routing, privacy boundaries, session memory, and helper scripts.
+
 ## Operating Boundaries
 
 - Treat "Luo-style" as shorthand for abstract interview craft: direct framing, biographical grounding, pressure-tested assumptions, and chaptered longform pacing.
@@ -31,6 +43,12 @@ Use this skill to turn a guest idea into a structured longform interview package
 
 ```bash
 python3 skills/laoluo-interview/scripts/create_session.py "Guest Name" --output sessions
+```
+
+For a live tryout, run:
+
+```bash
+python3 skills/laoluo-interview/scripts/pre_interview_cli.py "Guest Name" --output sessions
 ```
 
 3. Run the producer pre-interview before the main interview. The goal is not to fill a form; it is to naturally extract the guest's timeline, key choices, tradeoffs, taboo questions, and one-sentence self-definition.

@@ -34,6 +34,14 @@ This creates:
 - `transcript.md`
 - `highlights.md`
 
+## Run an Interactive Pre-Interview
+
+```bash
+python3 ~/.codex/skills/laoluo-interview/scripts/pre_interview_cli.py "Guest Name" --output sessions
+```
+
+The interactive runner creates a session, asks the producer pre-interview questions, records answers in `pre_interview.md`, updates `guest_profile.json`, and writes `next_codex_prompt.md` for continuing the workflow in Codex.
+
 ## Repo Layout
 
 ```text
@@ -42,6 +50,7 @@ skills/laoluo-interview/
   agents/openai.yaml
   references/
   scripts/create_session.py
+  scripts/pre_interview_cli.py
 ```
 
 ## Safety Boundary
