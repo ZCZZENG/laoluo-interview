@@ -42,6 +42,24 @@ python3 ~/.codex/skills/laoluo-interview/scripts/pre_interview_cli.py "Guest Nam
 
 The interactive runner creates a session, asks the producer pre-interview questions, records answers in `pre_interview.md`, updates `guest_profile.json`, and writes `next_codex_prompt.md` for continuing the workflow in Codex.
 
+## Generate Research Notes and a Chapter Plan
+
+After the pre-interview, generate `research_notes.md` and a four-chapter `chapter_plan.md` with the Claude API:
+
+```bash
+pip install anthropic
+export ANTHROPIC_API_KEY=...
+python3 ~/.codex/skills/laoluo-interview/scripts/research_cli.py sessions/<session-id>
+```
+
+Options: `--model` (default `claude-opus-5-5`), `--effort` (default `high`), `--force` to overwrite files you already edited, `--dry-run` to print the prompt without calling the API.
+
+## Tests
+
+```bash
+python3 -m unittest discover -s tests
+```
+
 ## Repo Layout
 
 ```text
@@ -51,6 +69,8 @@ skills/laoluo-interview/
   references/
   scripts/create_session.py
   scripts/pre_interview_cli.py
+  scripts/research_cli.py
+tests/
 ```
 
 ## Safety Boundary
