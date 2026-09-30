@@ -210,7 +210,9 @@ def write_outputs(target: Path, guest_name: str, answers: dict[str, str]) -> Non
         "# Next Codex Prompt\n\n"
         "Use $laoluo-interview to read this session directory, extract a clean "
         "`guest_profile.json`, create `research_notes.md`, and draft a four-chapter "
-        f"`chapter_plan.md`: `{target}`\n",
+        f"`chapter_plan.md`: `{target}`\n\n"
+        "Or generate research_notes.md and chapter_plan.md directly with the Claude API:\n\n"
+        f"```bash\npython3 {Path(__file__).resolve().parent / 'research_cli.py'} {target}\n```\n",
         encoding="utf-8",
     )
 

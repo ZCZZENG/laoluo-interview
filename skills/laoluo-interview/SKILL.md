@@ -55,6 +55,14 @@ python3 skills/laoluo-interview/scripts/pre_interview_cli.py "Guest Name" --outp
 4. Convert the pre-interview into `guest_profile.json`. Keep uncertain facts marked as `unknown` or `needs_confirmation` instead of inventing details.
 5. Build `research_notes.md` with the guest's era, city, industry, and choice context. Use search only when current or external facts matter.
 6. Plan the interview in four chapters: family/origin, key choices, present situation, philosophy and unresolved questions.
+
+For steps 5 and 6, after a pre-interview session exists, you can generate both files with the Claude API (needs `pip install anthropic` and `ANTHROPIC_API_KEY`):
+
+```bash
+python3 skills/laoluo-interview/scripts/research_cli.py sessions/<session-id>
+```
+
+It reads `guest_profile.json` and `pre_interview.md`, writes `research_notes.md` and `chapter_plan.md` in the shapes from `references/artifact-schemas.md`, and records the run in `meta.json`. It refuses to overwrite hand-edited files unless `--force` is passed; `--dry-run` prints the prompt without calling the API. Review the output: it performs no web search, so public sources are suggestions to check, and uncertain facts stay marked `needs_confirmation`.
 7. During long sessions, compress each completed chapter into `session_memory.json` before continuing. The next chapter context should include only the durable summary, unresolved threads, and next chapter goal.
 8. Finish with `transcript.md` and `highlights.md`. Highlights should surface concrete variables, real costs, transferable lessons, and sharp follow-up moments.
 
